@@ -176,7 +176,24 @@ ALL SESSIONS TABLE
             
             UPDATE TABLE all_cleaning
             SET formatted_time_ms = (time/1000 * INTERVAL '1 second' )
+
+	Combining duplicate/erronous categories
+		UPDATE all_cleaning
+		SET v2productcategory = 'Home/Bags/'
+		WHERE v2productcategory = 'Bags'
+
+		UPDATE all_cleaning
+		SET v2productcategory = 'Home/Nest/Nest-USA/'
+		WHERE v2productcategory = 'Nest-USA'
             
+		UPDATE all_cleaning
+		SET v2productcategory = 'Unknown Cat Title'
+		WHERE v2productcategory = '${escCatTitle}'
+
+		UPDATE all_cleaning
+		SET v2productcategory = 'Home/Apparel/'
+		WHERE v2productcategory = 'Apparel'
+
     Committing changes to All Sessions table
         DROP TABLE all_sessions;
 
