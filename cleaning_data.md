@@ -1,4 +1,5 @@
->Note: for this project I am assuming that I am the database engineer as well as the analyst and am creating tables and then altering them. 
+># Note: 
+>## For this project I am assuming that I am the database engineer as well as the analyst and am creating tables and then altering them. 
 
 # What issues will you address by cleaning the data?
 ## SKUs
