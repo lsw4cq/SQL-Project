@@ -36,7 +36,6 @@ WHERE
 		THEN -11 
 		ELSE 1 END = m.monthordered)
 
-
 Answer: 
 When we look at what was ordered last year in the same month as now and for the products with over a month of restocking lead time we find that two products need to be ordered. We could add to this query a percent growth expectation since we hope that more people will order each year but I did not do that since this business is trending down. 
 
@@ -90,16 +89,8 @@ They have a pretty nice split across referrals, directs, and organic searches. P
 
 The trend by month is wild. There is no real pattern that we can see because of the state of the data. 
 
-Question 3: What products are in stock and have never been ordered? 
 
-SQL Queries:
-
-
-Answer:
-
-
-
-Question 4: Is this business profitable or growing? 
+Question 3: Is this business profitable or growing? 
 
 SQL Queries:
 
@@ -129,7 +120,7 @@ Answer:
 
 On average they see a 10% drop in sales each month. There is an outlier in August 2017 records since only 39 were recorded which drops the average down significantly. Without that outlier there is a 2.9% drop each month. 
 
-Question 5: What areas should be focused on to grow the business?  
+Question 4: What areas should be focused on to grow the business?  
 
 SQL Queries:
 
