@@ -71,6 +71,9 @@ monthlytotals AS (
         SUM(CASE WHEN channelgrouping = 'Direct' THEN monthlytotal ELSE 0 END) AS directtotal,
         SUM(CASE WHEN channelgrouping = 'Paid Ads' THEN monthlytotal ELSE 0 END) AS paidadstotal,
         SUM(CASE WHEN channelgrouping = 'Organic Search' THEN monthlytotal ELSE 0 END) AS organictotal,
+	SUM(CASE WHEN channelgrouping = 'Display' THEN monthlytotal ELSE 0 END) AS displaytotal,
+	SUM(CASE WHEN channelgrouping = 'Affiliates' THEN monthlytotal ELSE 0 END) AS affiliatestotal,
+	SUM(CASE WHEN channelgrouping = 'Other' THEN monthlytotal ELSE 0 END) AS othertotal,
         SUM(monthlytotal) AS totalrevenueformonth
     FROM channelgroupingmonthly
     GROUP BY year, month)
@@ -80,7 +83,10 @@ SELECT
     referraltotal / totalrevenueformonth * 100 AS referralpercent, directtotal,
     directtotal / totalrevenueformonth * 100 AS directpercent, paidadstotal,
     paidadstotal / totalrevenueformonth * 100 AS paidadspercent, organictotal,
-    organictotal / totalrevenueformonth * 100 AS organicpercent
+    organictotal / totalrevenueformonth * 100 AS organicpercent,
+	displaytotal / totalrevenueformonth * 100 AS displaypercent,
+    affiliatestotal / totalrevenueformonth * 100 AS affiliatespercent,
+    othertotal / totalrevenueformonth * 100 AS otherpercent
 FROM monthlytotals
 ORDER BY year, month;
 
