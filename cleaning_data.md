@@ -1,15 +1,18 @@
+Note: for this project I am assuming that I am the database engineer as well as the analyst and am creating tables and then altering them. 
+
 What issues will you address by cleaning the data?
 SKUs
     There are some SKUs listed in all_sessions that don't exist in products and skus that exist in sales_by_sku but not products 
     There are five skus that are in the sales_by_sku but aren't in all_sessions or products
     SKUs are varying length, some with characters and some numeric
 Structure of Database
-    There are no defined relationships
+    There is no documentation so no way to confirm intented data structure. The creator of the data was inconsistent with naming conventions (sku vs productsku) meaning that column names are unreliable as reference.
 Column Types
     Price columns are bigint instead of numeric
-    Time columns are integer with no indication if it is milliseconds or seconds
+    Multiple tables with 
+    
 NULL Values
-    There are many null values that need to have values added
+    There are many null values that need to have values added or rows removed using where statements
 
 Channel Grouping: Analytics table has 'social', all_sessions does not have 'social'
 
