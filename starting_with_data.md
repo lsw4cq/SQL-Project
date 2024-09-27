@@ -1,6 +1,6 @@
-Question 1: What products should be ordered now? 
+# Question 1: What products should be ordered now? 
 
-SQL Queries:
+## SQL Queries:
 
 WITH monthlyorders AS (SELECT productsku as sku, v2productname as name, 
 	extract(month from date) as monthordered, 
@@ -36,16 +36,16 @@ WHERE
 		THEN -11 
 		ELSE 1 END = m.monthordered)
 
-Answer: 
+## Answer: 
 When we look at what was ordered last year in the same month as now and for the products with over a month of restocking lead time we find that two products need to be ordered. We could add to this query a percent growth expectation since we hope that more people will order each year but I did not do that since this business is trending down. 
 
 Men's Short Sleeve Badge Tee Charcoal (9 in stock, 10 ordered historically in October)
 Women's Short Sleeve Hero Tee Heather (1 in stock, 6 ordered historically in October)
 
 
-Question 2: What channel generated the most revenue? 
+# Question 2: What channel generated the most revenue? 
 
-SQL Queries:
+## SQL Queries:
 
 WITH channelrevenue AS (SELECT channelgrouping, SUM(totaltransactionrevenue) as total
 FROM all_sessions
@@ -56,7 +56,7 @@ ORDER BY total DESC)
 SELECT channelgrouping, total, total / SUM(total) OVER () * 100 as percentage
 FROM channelrevenue
 
-Looking for trends by month and channel grouping
+### Looking for trends by month and channel grouping
 
 WITH channelgroupingmonthly AS (
     SELECT EXTRACT(YEAR FROM date) AS year, EXTRACT(MONTH FROM date) AS month, channelgrouping,
@@ -90,17 +90,17 @@ SELECT
 FROM monthlytotals
 ORDER BY year, month;
 
-Answer:
+## Answer:
 They have a pretty nice split across referrals, directs, and organic searches. Paid Searches accounted for less than 2% of revenue while the other three accounted for the rest. It isn't clear if they are paying for ads or how much they are paying for them so there is no way to make a recommendation on paid searches. 
 
 The trend by month is wild. There is no real pattern that we can see because of the state of the data. 
 
 
-Question 3: Is this business profitable or growing? 
+# Question 3: Is this business profitable or growing? 
 
-SQL Queries:
+## SQL Queries:
 
---Checking to see revenue from all_sessions table broken down by month/year
+### Checking to see revenue from all_sessions table broken down by month/year
 
 CREATE TEMP TABLE revenueovertime AS (WITH basicinfo AS (SELECT EXTRACT(YEAR FROM date) AS year, 
     EXTRACT(MONTH FROM date) AS month, 
@@ -116,18 +116,18 @@ SELECT year, month, rowcount,
 	END AS diff
 FROM basicinfo)
 
-Getting average growth rate for the dataset
+### Getting average growth rate for the dataset
 SELECT AVG(diff)
 FROM revenueovertime
 WHERE diff > -90 --this is optional but recommended because August 2017 is an outlier. 
 
 
-Answer:
+## Answer:
 
 On average they see a 10% drop in sales each month. There is an outlier in August 2017 records since only 39 were recorded which drops the average down significantly. Without that outlier there is a 2.9% drop each month. 
 
-Question 4: What areas should be focused on to grow the business?  
+## Question 4: What areas should be focused on to grow the business?  
 
-SQL Queries:
+### SQL Queries:
 
-Answer:
+### Answer:
