@@ -6,16 +6,10 @@
 * There are some SKUs listed in all_sessions that don't exist in products and skus that exist in sales_by_sku but not products 
 * There are five skus that are in the sales_by_sku but aren't in all_sessions or products
 * SKUs are varying length, some with characters and some numeric
-## Structure of Database
-* There are no defined relationships
+
 ## Column Types
 * Price columns are bigint instead of numeric
-* Time columns are integer with no indication if it is milliseconds or seconds
-## NULL Values
-* There are many null values that need to have values added
 
-## Channel Grouping 
-* Analytics table has 'social', all_sessions does not have 'social'
 
 ## Products Table 
 * Should there be negative values in the sentiment score? 
