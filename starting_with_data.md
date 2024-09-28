@@ -120,9 +120,3 @@ The trend by month is wild. There is no real pattern that we can see because of 
 ## Answer:
 
 On average they see a 10% drop in sales each month. There is an outlier in August 2017 records since only 39 were recorded which drops the average down significantly. Without that outlier there is a 2.9% drop each month. 
-
-## Question 4: What areas should be focused on to grow the business?  
-
-### SQL Queries:
-
-### Answer:

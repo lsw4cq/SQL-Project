@@ -6,7 +6,7 @@
 * There are five skus that are in the sales_by_sku but aren't in all_sessions or products
 * SKUs are varying length, some with characters and some numeric
 ## Column Types
-* Price columns are bigint instead of numeric
+* Price columns are bigint instead of numeric (this is because I used the import feature in pgadmin4)
 ## Products Table 
 * Should there be negative values in the sentiment score? 
 * Why are there products that have never been ordered before that have sentiment scores? And one product has NULL instead
