@@ -1,5 +1,6 @@
 # Answer the following questions and provide the SQL queries used to find the answer.
 
+> For each question there is the option to remove the City values that are not available in demo dataset. Since most questions asked for city and country I left them in so that we could get accurate country numbers. 
     
 ## Question 1: Which cities and countries have the highest level of transaction revenues on the site?
 
@@ -89,9 +90,9 @@ TOP 5:
 |10|	Canada	|1.00|
 
 
-## Question 3: Is there any pattern in the types (product categories) of products ordered from visitors in each city and country?**
+## Question 3: Is there any pattern in the types (product categories) of products ordered from visitors in each city and country?
 
-
+> For the purpose of this question I am assuming that each row item that has a category is a ordered product.
 ### SQL Queries:
 
 #### Checking the category name against city name and getting which city mentions that category the most
@@ -147,9 +148,6 @@ TOP 5:
 
 ### Answer:
 
-For the purpose of this question I am assuming that each row item that has a category is a ordered product.
-The not available in demo dataset really hinders our ability to get solid results. From the data there is no significant trend that can be associated to a city. 
-
 When we zoom out to the country level we see that the following: 
 - United States accounts for 47.37% of all Men's T-shirts'  
 - The UK, India, Germany, and Canada accounts for about 30% of all home/shop by brand/YouTube/  
@@ -188,7 +186,7 @@ When we zoom out to the country level we see that the following:
 When we look at the city data it looks like cameras, bottle infusers, and t-shirts are the most popular items. 
 The country results show similar results but adds in the twill cap and bottle infuser. Both answers show that the hero tee should be the primary product if margins on it are the same as the bottle infuser. 
 
-## Question 5: Can we summarize the impact of revenue generated from each city/country?**
+## Question 5: Can we summarize the impact of revenue generated from each city/country?
 
 ### SQL Queries:
 
@@ -210,6 +208,6 @@ The country results show similar results but adds in the twill cap and bottle in
 
 ## Answer:
 
-The country results show that a shocking amount of revenue comes from the United States. The remaining countries account for less than 10% of revenue. The United States is the revenue. 
+The country results show that a significant amount of revenue comes from the United States. The remaining countries account for less than 10% of revenue. The United States is the revenue. 
 
 The city results show that 3 of the top 5 are in California, accounting for 20% of total revenue. This compares to the 42% from not available in demo dataset. 
