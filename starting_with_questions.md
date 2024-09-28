@@ -22,50 +22,71 @@ TOP 5:
 5. Palo Alto, United States
 
 
-## Question 2: What is the average number of products ordered from visitors in each city and country?**
+## Question 2: What is the average number of products ordered from visitors in each city and country?
 
 
 ### SQL Queries:
+> For this question I am assuming that any time a product quantity is listed, it was ordered. 
 
-    SELECT country, city, AVG(productquantity) as revenue
+    SELECT country, city, ROUND(AVG(productquantity),2) as avgproducts
     FROM all_sessions
-    WHERE productquantity IS NOT NULL
+    WHERE productquantity IS NOT NULL --optional AND city != 'not available in demo set'
     GROUP BY city, country
-    ORDER BY revenue DESC
+    ORDER BY revenue DESC;
+
+    SELECT country, ROUND(AVG(productquantity),2) as  avgproducts
+    FROM all_sessions
+    WHERE productquantity IS NOT NULL --optional AND city != 'not available in demo set'
+    GROUP BY country
+    ORDER BY avgproducts DESC; 
 
 ### Answer:
 
-Not being able to tell which items were actually ordered, and not being able to connect the all_sessions table to the analytics table, means that it isn't possible to get an accurate average. 
+#### City Answer
+
 |country|city|avg|
 |----|:----:|---:|
-| United States |   not available in demo dataset   | 10.5833333333333333 |
-| Spain   | Madrid   | 10.0000000000000000 |
-|United States    |Salem |    8.0000000000000000|
-|United States    |Atlanta|     4.0000000000000000|
-|United States    |Houston |    2.0000000000000000|
-|United States    |New York |    1.1666666666666667|
-|United States    |Dallas   | 1.00000000000000000000|
-|United States    |Detroit   | 1.00000000000000000000|
-|Ireland    |Dublin |    1.00000000000000000000|
-|United States    |Columbus  |  1.00000000000000000000|
-|United States   | Los Angeles   | 1.00000000000000000000|
-|United States    |Chicago   | 1.00000000000000000000|
-|United States    |Mountain View  |  1.00000000000000000000|
-|United States    |(not set)  |  1.00000000000000000000|
-|United States    |Palo Alto   | 1.00000000000000000000|
-|India    |Bengaluru   | 1.00000000000000000000|
-|United States    |San Francisco  |  1.00000000000000000000|
-|United States    |San Jose  |  1.00000000000000000000|
-|United States    |Seattle  |  1.00000000000000000000|
-|United States    |Sunnyvale  |  1.00000000000000000000|
-|Argentina     |Not available in demo dataset |   1.00000000000000000000|
-|Canada     |Not available in demo dataset   | 1.00000000000000000000|
-|Colombia     |Not available in demo dataset  |  1.00000000000000000000|
-|Finland    |Not available in demo dataset   | 1.00000000000000000000|
-|France    |Not available in demo dataset   | 1.00000000000000000000|
-|Mexico    |Not available in demo dataset   | 1.00000000000000000000|
-|United States    |Ann Arbor   | 1.00000000000000000000|
+| United States |   not available in demo dataset   | 10.58 |
+| Spain   | Madrid   | 10.00 |
+|United States    |Salem |    8.00|
+|United States    |Atlanta|     4.00|
+|United States    |Houston |    2.00|
+|United States    |New York |    1.17|
+|United States    |Dallas   | 1.00|
+|United States    |Detroit   | 1.00|
+|Ireland    |Dublin |    1.00|
+|United States    |Columbus  |  1.00|
+|United States   | Los Angeles   | 1.00|
+|United States    |Chicago   | 1.00|
+|United States    |Mountain View  |  1.00|
+|United States    |(not set)  |  1.00|
+|United States    |Palo Alto   | 1.00|
+|India    |Bengaluru   | 1.00|
+|United States    |San Francisco  |  1.00|
+|United States    |San Jose  |  1.00|
+|United States    |Seattle  |  1.00|
+|United States    |Sunnyvale  |  1.00|
+|Argentina     |Not available in demo dataset |   1.00|
+|Canada     |Not available in demo dataset   | 1.00|
+|Colombia     |Not available in demo dataset  |  1.00|
+|Finland    |Not available in demo dataset   | 1.00|
+|France    |Not available in demo dataset   | 1.00|
+|Mexico    |Not available in demo dataset   | 1.00|
+|United States    |Ann Arbor   | 1.00|
 
+#### Country Answer
+|number|country|average|
+|---|----|----|
+|1  | Spain	|    10.00|
+|2	|United States	       |4.02|
+|3	|Colombia	|1.00|
+|4	|Finland	|1.00|
+|5	|France	|1.00|
+|6	|Argentina	|1.00|
+|7	|Ireland	|1.00|
+|8	|Mexico	|1.00|
+|9	|India	|1.00|
+|10|	Canada	|1.00|
 
 
 ## Question 3: Is there any pattern in the types (product categories) of products ordered from visitors in each city and country?**
