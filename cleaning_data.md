@@ -130,14 +130,7 @@ Below, provide the SQL queries you used to clean your data.
     FROM all_cleaning
     WHERE productrevenue = 0 
     RESULT 376 SAME AS all sessions table
-#### Setting currencycode null values as other
-    UPDATE all_cleaning
-    SET currencycode = 'other'
-    WHERE currencycode IS NULL
-#### Adding formatted time column
-    ALTER TABLE all_cleaning
-    ADD COLUMN formatted_time_ms INTERVAL;
-### Combining duplicate/erronous categories
+#### Combining duplicate/erronous categories
     UPDATE all_cleaning
     SET v2productcategory = 'Home/Bags/'
     WHERE v2productcategory = 'Bags'
@@ -150,8 +143,6 @@ Below, provide the SQL queries you used to clean your data.
     UPDATE all_cleaning
     SET v2productcategory = 'Home/Apparel/'
     WHERE v2productcategory = 'Apparel'
-### UPDATE TABLE all_cleaning
-    SET formatted_time_ms = (time/1000 * INTERVAL '1 second' )
 ### Committing changes to All Sessions table
     DROP TABLE all_sessions;
     CREATE TABLE all_sessions AS
@@ -160,32 +151,23 @@ Below, provide the SQL queries you used to clean your data.
 ### Creating Temp Table
     CREATE TEMP TABLE analytics_cleaning AS (
     SELECT * FROM analytics)
-#### UPDATE TABLE all_cleaning
-    SET formatted_time_ms = (time/1000 * INTERVAL '1 second' )Checking visitid and visitstarttime (Result was marginal .9% are different)
-            WITH idstarttable AS (SELECT COUNT(*) AS sameidstarttime,
-           (SELECT COUNT(*) FROM analytics_cleaning) as totalrows, 
-           ((SELECT COUNT(*) FROM analytics_cleaning)-COUNT(*)) AS diff
-            FROM analytics_cleaning
-            WHERE visitid = visitstarttime)
-            SELECT *, (CAST(diff as real)/totalrows)*100 as percentage
-            FROM idstarttable
 #### Setting revenue column type to numeric
-            ALTER TABLE analytics_cleaning
-            ALTER COLUMN revenue TYPE numeric
+    ALTER TABLE analytics_cleaning
+    ALTER COLUMN revenue TYPE numeric
 #### Updating the revenue column per instructions
-            UPDATE analytics_cleaning
-            SET revenue = ROUND(revenue/1000000.0,2)
+    UPDATE analytics_cleaning
+    SET revenue = ROUND(revenue/1000000.0,2)
 #### Verifying update by confirming number of zero values didn't change
-            SELECT COUNT(revenue)
-            FROM analytics_cleaning
-            WHERE revenue = 0 
-            RESULT 0 SAME AS analytics table
+    SELECT COUNT(revenue)
+    FROM analytics_cleaning
+    WHERE revenue = 0 
+    RESULT 0 SAME AS analytics table
 #### Setting unit_price column type to numeric
-            ALTER TABLE analytics_cleaning
-            ALTER COLUMN unit_price TYPE numeric;
+    ALTER TABLE analytics_cleaning
+    ALTER COLUMN unit_price TYPE numeric;
 #### Updating the unit_price column per instructions
-            UPDATE analytics_cleaning
-            SET unit_price = ROUND(revenue/1000000.0,2)
+    UPDATE analytics_cleaning
+    SET unit_price = ROUND(revenue/1000000.0,2)
 #### Verifying update by confirming number of zero values didn't change
     SELECT COUNT(unit_price)
     FROM analytics_cleaning
